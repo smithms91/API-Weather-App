@@ -11,7 +11,7 @@ $(document).ready(() => {
   function showPosition(position) {
     let lat = position.coords.latitude;
     let long = position.coords.longitude; 
-    $.get(`http://api.wunderground.com/api/296d02426388fc32/conditions/q/${lat},${long}.json`).then((data) => {
+    $.get(`https://api.wunderground.com/api/296d02426388fc32/conditions/q/${lat},${long}.json`).then((data) => {
       let fullLocation = data.current_observation.display_location.full;
       let temp = data.current_observation.temp_f;
       let logo = data.current_observation.local_time_rfc822;
