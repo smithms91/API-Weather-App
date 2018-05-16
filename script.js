@@ -7,18 +7,18 @@ $(document).ready(() => {
       console.log(":(");
     }
   }
-
+  
   function showPosition(position) {
     let lat = position.coords.latitude;
     let long = position.coords.longitude; 
     $.get(`https://api.wunderground.com/api/296d02426388fc32/conditions/q/${lat},${long}.json`).then((data) => {
       let fullLocation = data.current_observation.display_location.full;
-      let temp = data.current_observation.temp_f;
+      let temp = Math.floor(data.current_observation.temp_f);
       let logo = data.current_observation.local_time_rfc822;
       let tag = ["Go outside! It's a beautiful day!", "It's a little chilly, grab a jacket!", "It's freezing stay inside!"];
       let logos = ["img/rain.png","img/rainy_sunny.png","img/sunny.png","img/thunderstorms.png","img/windy-weather.png", "img/partly_sunny.svg"];
 
-      if (temp >= 75) {
+      if (temp >= 70) {
         weather(fullLocation, temp, logos[2], tag[0]);
       } else if (temp >= 50) {
         weather(fullLocation, temp, logos[5], tag[1]);
@@ -39,7 +39,6 @@ $(document).ready(() => {
   }
   
   getLocation();
-  
 
 })
 
